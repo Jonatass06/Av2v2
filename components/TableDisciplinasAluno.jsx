@@ -1,4 +1,18 @@
-export default ({ disciplinas, aluno }) => {
+import contem from "@/functions/contem";
+import { GetDataId } from "@/pages/api/hello";
+import { useEffect, useState } from "react"
+
+export default ({ aluno }) => {
+    const[disciplinas, setDisciplinas] = useState([]);
+
+    useEffect(() => {
+        getTurma()
+    }, [10000])
+
+    async function getTurma(){
+        setDisciplinas((await GetDataId(aluno.turma.id, "turma")).disciplinas);
+    }
+
     return (
         <div>
             <div>

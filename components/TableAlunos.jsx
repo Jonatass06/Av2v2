@@ -1,3 +1,5 @@
+import contem from "@/functions/contem"
+
 export default ({alunos, turmas}) => {
     return(
         <div>
@@ -8,7 +10,7 @@ export default ({alunos, turmas}) => {
                         <div>{aluno.nome}</div>
                         <select>
                             {turmas.map(turma => {
-                                if(turma == aluno.turma){
+                                if(contem(aluno, turma.alunos)){
                                     return <option value={turma.id} selected>{turma.id}</option>
                                 }
                                 return <option value={turma.id}>{turma.id}</option>

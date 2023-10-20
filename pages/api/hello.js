@@ -1,16 +1,20 @@
 
+import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function GetDataId(id, tabela) {
-  const result = await fetch( "http://10.4.96.8:8082/"+ tabela +"/"+ id);
-  const dados = await result.json();
-  return dados
+  try {
+    const response = await axios.get("http://10.4.96.35:8082/"+tabela+"/"+id);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar produtos:", error);
+  }
 }
 
+
 export async function GetUserByPasswordUsername(username, password) {
-  const result = await fetch("http://10.4.96.8:8082/usuario",{method:"GET"});
-  const dados = await result.json();
-  for(let dado of dados){
+  let a = await GetAllData("usuario");
+  for(let dado of a){
     if(dado.nome == username && dado.senha == password){
       return dado;
     }
@@ -19,42 +23,28 @@ export async function GetUserByPasswordUsername(username, password) {
 }
 
 export default async function GetAllData(tabela) {
-  const result = await fetch("http://10.4.96.8:8082/"+ tabela);
-  const dados = await result.json();
-  return dados
+  try {
+    const response = await axios.get("http://10.4.96.35:8082/"+tabela);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar produtos:", error);
+  }
 }
 // 
 export async function PostData(object, tabela) {
-  const res = await fetch("https://10.4.96.8:8082/"+ tabela , {
-    method: "POST",
-    headers: {
-      'Content-Type': 'Application/json'
-    },
-    body: JSON.stringify(object),
-  });
-
-  const data = await res.json()
+  const res = await axios.post("https://10.4.9635.:8082/"+ tabela , {data:object});
+  const data = await res.data;
   return NextResponse.json(data)
 }
 
 export async function DeleteData(id, tabela) {
-  const result = await fetch("http://10.4.96.8:8082/" + tabela +"/"+ id,{method:"DELETE"});
-  const dados = await result.json();
-
+  const result = await axios.delete("http://10.4.96.35:8082/" + tabela +"/"+ id);
+  const dados = await result.data;
   return dados;
-
 }
 
 export async function PutData(object, tabela) {
-  const res = await fetch("http://10.4.96.8:8082/"+tabela, {
-    method: "PUT",
-    headers: {
-      'Content-Type': 'Application/json'
-    },
-    body: JSON.stringify(object),
-  });
-  const data = await res.json()
-
+  const res = await axios.put("http://10.4.96.35:8082/"+tabela, {data:object});
+  const data = await res.data
   return NextResponse.json(data)
-
 }

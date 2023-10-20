@@ -8,7 +8,7 @@ export default ({professores, disciplinas}) => {
                         <div>{professor.nome}</div>
                         <select>
                             {disciplinas.map(disciplina => {
-                                if(disciplina == professor.disciplina){
+                                if(disciplina.id == professor.disciplina.id){
                                     return <option value={disciplina.id} selected>{disciplina.nome}</option>
                                 }
                                 return <option value={disciplina.id}>{disciplina.nome}</option>
