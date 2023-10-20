@@ -6,6 +6,7 @@ export default ({secretarios}) => {
                 {secretarios.map(secretario =>{
                     return <div> 
                         <div>{secretario.nome}</div>
+                        <div>{secretario.qtdBoletins}</div>
                     </div>
                 })}
             </div>

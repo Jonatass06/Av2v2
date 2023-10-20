@@ -1,6 +1,11 @@
 import contem from "@/functions/contem"
+import { PostData } from "@/pages/api/hello"
+import ModalCadastro from "./ModalCadastro"
 
 export default ({alunos, turmas}) => {
+    function post(obj){
+        PostData(obj, "aluno")
+    }
     return(
         <div>
             <div>alunos</div>
@@ -19,6 +24,7 @@ export default ({alunos, turmas}) => {
                     </div>
                 })}
             </div>
+            <ModalCadastro post={obj => post(obj)}/>
         </div>
     )
 }

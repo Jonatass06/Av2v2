@@ -32,9 +32,11 @@ export default async function GetAllData(tabela) {
 }
 // 
 export async function PostData(object, tabela) {
-  const res = await axios.post("https://10.4.9635.:8082/"+ tabela , {data:object});
-  const data = await res.data;
-  return NextResponse.json(data)
+  try {
+    const response = await axios.post("http://10.4.96.35:8082/"+ tabela , object);
+  } catch (error) {
+    throw error
+  }
 }
 
 export async function DeleteData(id, tabela) {
@@ -44,7 +46,9 @@ export async function DeleteData(id, tabela) {
 }
 
 export async function PutData(object, tabela) {
-  const res = await axios.put("http://10.4.96.35:8082/"+tabela, {data:object});
-  const data = await res.data
-  return NextResponse.json(data)
+  try {
+    const response = await axios.put("http://10.4.96.35:8082/"+ tabela , object);
+  } catch (error) {
+    throw error
+  }
 }

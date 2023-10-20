@@ -8,9 +8,11 @@ export default ({professores, disciplinas}) => {
                         <div>{professor.nome}</div>
                         <select>
                             {disciplinas.map(disciplina => {
-                                if(disciplina.id == professor.disciplina.id){
-                                    return <option value={disciplina.id} selected>{disciplina.nome}</option>
-                                }
+                                try{
+                                    if(disciplina.id == professor.disciplina.id){
+                                        return <option value={disciplina.id} selected>{disciplina.nome}</option>
+                                    }
+                                } catch(erro){}
                                 return <option value={disciplina.id}>{disciplina.nome}</option>
                             })}
                         </select>
