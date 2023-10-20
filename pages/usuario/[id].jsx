@@ -14,12 +14,12 @@ import contem from "@/functions/contem";
 
 export default () =>{
     const id = useRouter().query.id;
-    let [secretarios, setSecretarios] = useState([]);
-    let [alunos, setAlunos] = useState([]);
-    let [professores, setProfessores] = useState([]);
-    let [turmas, setTurmas] = useState([]);
-    let [disciplinas, setDisciplinas] = useState([]);
-    let [usuario, setUsuario] = useState({});
+    const [secretarios, setSecretarios] = useState([]);
+    const [alunos, setAlunos] = useState([]);
+    const [professores, setProfessores] = useState([]);
+    const [turmas, setTurmas] = useState([]);
+    const [disciplinas, setDisciplinas] = useState([]);
+    const [usuario, setUsuario] = useState({});
 
     useEffect( () =>{
         setDados();
