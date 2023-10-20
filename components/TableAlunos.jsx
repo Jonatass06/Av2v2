@@ -1,10 +1,14 @@
 import contem from "@/functions/contem"
-import { PostData } from "@/pages/api/hello"
+import { PostData, PutData } from "@/pages/api/hello"
 import ModalCadastro from "./ModalCadastro"
 
 export default ({alunos, turmas}) => {
     function post(obj){
         PostData(obj, "aluno")
+    }
+    function put(aluno, value){
+        aluno.turma = {"id":parseInt(value)};
+        PutData(aluno, "aluno")
     }
     return(
         <div>
@@ -13,7 +17,7 @@ export default ({alunos, turmas}) => {
                 {alunos.map(aluno =>{
                     return <div> 
                         <div>{aluno.nome}</div>
-                        <select>
+                        <select onChange={e => put(aluno, e.target.value)}>
                             {turmas.map(turma => {
                                 if(contem(aluno, turma.alunos)){
                                     return <option value={turma.id} selected>{turma.id}</option>

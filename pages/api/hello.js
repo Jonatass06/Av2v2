@@ -46,8 +46,9 @@ export async function DeleteData(id, tabela) {
 }
 
 export async function PutData(object, tabela) {
+  console.log(object)
   try {
-    const response = await axios.put("http://10.4.96.35:8082/"+ tabela , object);
+    await axios.put("http://10.4.96.35:8082/"+ tabela , object);
   } catch (error) {
     throw error
   }

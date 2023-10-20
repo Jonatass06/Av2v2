@@ -21,7 +21,7 @@ export default ({post}) => {
                 post({
                     "nome": nome,
                     "senha": senha, 
-                    "idade": parseInt(idade),
+                    "idade": idade == "" ? 0 : parseInt(idade),
                     "endereco": endereco
                 });
             }}>Continuar</button>

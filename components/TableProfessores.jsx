@@ -1,4 +1,11 @@
+import ModalCadastro from "./ModalCadastro"
+
 export default ({professores, disciplinas}) => {
+
+    function post(obj){
+        PostData(obj, "professor")
+    }
+
     return(
         <div>
             <div>professores</div>
@@ -19,6 +26,7 @@ export default ({professores, disciplinas}) => {
                     </div>
                 })}
             </div>
+            <ModalCadastro post={obj => post(obj)}></ModalCadastro>
         </div>
     )
 }
