@@ -11,6 +11,7 @@ import TableTurmas from "@/components/TableTurmas";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import contem from "@/functions/contem";
+import user from "@/data/usuario";
 
 export default () =>{
     const id = useRouter().query.id;
@@ -22,13 +23,16 @@ export default () =>{
     const [usuario, setUsuario] = useState({});
 
     useEffect( () =>{
-        setDados();
-    }, [10000])
+        if(id!=undefined){
+            setDados();
+        }
+    }, [id])
 
     async function setDados(){
         setSecretarios(await GetAllData("secretario"))
         setAlunos( await GetAllData("aluno"));
         setProfessores(await GetAllData("professor"));
+        console.log(id)
         setUsuario(await GetDataId(id, "usuario"))
         setDisciplinas(await GetAllData("disciplina"));
         setTurmas(await GetAllData("turma"))
@@ -36,7 +40,7 @@ export default () =>{
 
     return(
         <RotaPrivada id={id}>
-            <Header></Header>
+            <Header id={id}></Header>
             {
                 contem(usuario, alunos) &&
                 <div>

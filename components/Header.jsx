@@ -1,5 +1,8 @@
+import { useRouter } from "next/router"
 
-export default () => {
+export default ({id}) => {
+
+    const router = useRouter();
 
     return (
         <>
@@ -9,7 +12,7 @@ export default () => {
                     <img className="w-12 h-12" src="../logoAv2.svg" />
                     <h2 className="text-branco font-chivo font-bold">Arnaldo Vieira II</h2>
                 </div>
-                <img className="w-12 h-12 flex justify-end mr-5 invert" src="../user-icon.png" />
+                <img className="w-12 h-12 flex justify-end mr-5 invert" src="../user-icon.png"  onClick={()=>router.push("/usuario/configs/"+id)}/>
             </header>
         </>
     )

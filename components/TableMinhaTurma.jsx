@@ -1,9 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default ({ turma }) => {
     const [mostrarAlunos, setMostrarA] = useState(false);
     const [mostrarDisciplinas, setMostrarD] = useState(false);
 
+    useEffect(()=>{
+        console.log(turma)
+    }, [1000])
+    
     return (
         <div>
             <div>Minha Turma</div>
